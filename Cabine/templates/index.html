@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Memories{% endblock %}
+
+{% block content %}
+<div class="album">
+    {% if fotos %}
+        {% for foto in fotos %}
+            <div class="fotos-album">
+                <img src="static/fotos/{{foto}}" alt="">
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="fotos-album">
+            <img src="static/fotos/foto1.jpg" alt="">
+        </div>
+        <div class="fotos-album">
+            <img src="static/fotos/foto2.jpg" alt="">
+        </div>
+        <div class="fotos-album">
+            <img src="static/fotos/foto3.jpg" alt="">
+        </div>
+    {% endif %}
+</div>
+<h1>Registre este momento especial</h1>
+<h1>&</h1>
+<h1>leve com você uma foto de recordação</h1>
+<form action="{{ url_for('tirar_foto') }}" method="post">
+    <button class="botao" autofocus>Começar</button>
+</form>
+{% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrigado {{nome}}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta http-equiv="refresh" content="40;url={{ url_for('index') }}">
+</head>
+<body class="mensagem">
+    <img class="confetes" src="static/images/Confetes.png" alt="">
+    <div class="container">
+        <img class="medalha" src="/static/images/medalha.png" alt="">
+        <h2 class="no-print">Deseja imprimir?</h2>
+    </div>
+    <img class="foto" src="/static/fotos/1.jpg" alt="">
+    <div class="container">
+        <a class="no-print" onclick="window.print(); return false;">Sim</a>
+        <a class="no-print" href="/">Não</a>
+    </div>
+    <img class="logo" id="ancora" src="static/images/logo-branco.png" alt="">
+    <script>
+        setTimeout(function() {
+            document.querySelector('#ancora').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }, 15000); // 15.000 milissegundos (15 segundos)
+
+        function startAnimation() {
+            // Cria um elemento div
+            var overlay = document.createElement("div");
+            // Adiciona a classe de animação ao div
+            overlay.className = "fade-out";
+            // Adiciona o div ao corpo do documento
+            document.body.appendChild(overlay);
+        }
+        window.onload = startAnimation;
+    </script>
+</body>
+</html>
