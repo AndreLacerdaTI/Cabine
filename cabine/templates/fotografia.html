@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrigado</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta http-equiv="refresh" content="200;url={{ url_for('index') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            {% for codigo in range(1, 4) %}
+                <img class="foto" src="/static/fotos/{{ cliente }}-{{codigo}}.jpg" alt="">
+            {% endfor %}
+            <img class="logo" id="ancora" src="static/images/logo.png" alt="">
+        </div>
+        <div class="right">
+            <h2 class="no-print">Deseja imprimir?</h2>
+            <a class="no-print" href="" onclick="window.print(); return false;">Sim</a>
+            <a class="no-print" href="/">Não</a>
+        </div>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.querySelector('#ancora').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }, 15000); // 15.000 milissegundos (15 segundos)
+
+        function startAnimation() {
+            // Cria um elemento div
+            var overlay = document.createElement("div");
+            // Adiciona a classe de animação ao div
+            overlay.className = "fade-out";
+            // Adiciona o div ao corpo do documento
+            document.body.appendChild(overlay);
+            setTimeout(function() {
+                // Remove o elemento div da animação
+                document.body.removeChild(overlay);
+            }, 2000);
+        }
+        window.onload = startAnimation;
+    </script>
+</body>
+</html>

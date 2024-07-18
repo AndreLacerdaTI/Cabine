@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background-color: cadetblue;
+}
+
+.botao-tema {
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background-color: #ffffff45;
+    border: 10px solid #ffffff45;
+    padding: 0;
+    transition: 0.2s;
+}
+.botao-tema img{
+    border-radius: 20px;
+    width: 400px;
+    height: 200px;
+}
+
+.botao-tema:hover {
+    scale: 1.1;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <title>Configurações</title>
+</head>
+<body>
+    {% if trocar_logo %}
+        <div>
+            <h1>Selecionar Logo</h1>
+        </div>
+    {% elif trocar_tema %}
+        <div>
+            <h1>Selecionar Tema</h1>
+            <form action="{{ url_for('salvar_tema') }}" method="post">
+                <button class="botao-tema" name="tema" value="infantil"><img class="foto" src="/static/images/tema_infantil.png" alt=""></button>
+                <button class="botao-tema" name="tema" value="branco"><img class="foto" src="/static/images/tema_branco.png" alt=""></button>
+            </form>
+        </div>
+    {% else %}
+        <form action="{{ url_for('trocar_tema') }}" method="post">
+            <button>Trocar tema</button>
+        </form>
+        <form action="{{ url_for('trocar_logo') }}" method="post">
+            <button>Trocar logo</button>
+        </form>
+        <form action="{{ url_for('sair') }}" method="post">
+            <button>Sair</button>
+        </form>
+    {% endif %}
+</body>
+</html>

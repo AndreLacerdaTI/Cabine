@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tirar foto</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="https://www.grupocopobras.com.br/wp-content/uploads/2020/12/cropped-logo-site-2-32x32-1.png" sizes="32x32">
+    <script>
+        let counter = 5;
+
+        function startCountdown() {
+            let countdownElement = document.getElementById('countdown');
+            let interval = setInterval(function() {
+                if (counter > 0) {
+                    countdownElement.innerHTML = counter;
+                    counter--;
+                } else {
+                    clearInterval(interval);
+                    captureImage();
+                }
+            }, 1000);
+        }
+
+        function captureImage() {
+            // Cria um elemento div
+            var overlay = document.createElement("div");
+            // Adiciona a classe de animação ao div
+            overlay.className = "fade-white";
+            // Adiciona o div ao corpo do documento
+            document.body.appendChild(overlay);
+
+            setTimeout(function() {
+                // Próximo comando a ser executado após 2 segundos
+                fetch("{{ url_for('capture') }}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    //alert(data.message);
+                    if (data.success) {
+                        //window.location.href = '/';
+                        window.location.href = data.redirect_url;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }, 1000);
+
+        }
+    </script>
+</head>
+<body onload="startCountdown()">
+    <div class="webcam">
+        <img src="{{ url_for('video_feed') }}" width="auto" height="100%">
+    </div>
+    <div class="tempo">
+        <span id="countdown">5</span>
+    </div>
+</body>
+</html>
